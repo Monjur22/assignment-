@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    form {
+      width: 300px;
+      margin: 0 auto;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    input[type="text"],
+    textarea,
+    input[type="email"],
+    input[type="submit"] {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 10px;
+    }
+
+    input[type="submit"] {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #45a049;
+    }
+
+    input:invalid {
+      border: 1px solid red;
+    }
+  </style>
+</head>
+<body>
+  <h2>Student Form</h2>
+  <form id="studentForm" action="submit.php" method="post" onsubmit="return validateForm()">
+    <label for="name">Name (Legal/Official):</label>
+    <input type="text" id="name" name="name" required pattern="[a-zA-Z\s]+" title="Only letters and spaces are allowed"><br>
+
+    <label for="matricNo">Matric No:</label>
+    <input type="text" id="matricNo" name="matricNo" required><br>
+
+    <label for="currentAddress">Current Address:</label>
+    <textarea id="currentAddress" name="currentAddress" required></textarea><br>
+
+    <label for="homeAddress">Home Address:</label>
+    <textarea id="homeAddress" name="homeAddress" required></textarea><br>
+
+    <label for="email">Email (Gmail Account):</label>
+    <input type="email" id="email" name="email" required><br>
+
+    <label for="mobilePhone">Mobile Phone No:</label>
+    <input type="text" id="mobilePhone" name="mobilePhone" required pattern="[0-9]{10}" title="Please enter a 10-digit mobile phone number"><br>
+
+    <label for="homePhone">Home Phone No (Emergency):</label>
+    <input type="text" id="homePhone" name="homePhone" pattern="[0-9]{10}" title="Please enter a 10-digit home phone number"><br>
+
+    <input type="submit" value="Submit">
+  </form>
+
+  <script>
+    function validateForm() {
+      var mobilePhone = document.getElementById('mobilePhone').value;
+      var homePhone = document.getElementById('homePhone').value;
+
+      if (!/^[0-9]{10}$/.test(mobilePhone)) {
+        alert('Please enter a valid 10-digit mobile phone number');
+        return false;
+      }
+
+      if (homePhone && !/^[0-9]{10}$/.test(homePhone)) {
+        alert('Please enter a valid 10-digit home phone number');
+        return false;
+      }
+
+      return true;
+    }
+  </script>
+</body>
+</html>
